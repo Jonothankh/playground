@@ -25,6 +25,7 @@ export default function Experience()
     const sphere = useRef(null)
     const cube = useRef(null)
 
+    const { introVisible } = useControls('Introduction', { introVisible: true })
     const { attach } = useControls('Controls', { attach: false })
     const { perfVisible } = useControls('Perf', { perfVisible: false })
 
@@ -52,7 +53,13 @@ export default function Experience()
 
         <Grid />
 
-        {/* <MetaBalls /> */}
+        {introVisible &&
+            <Html wrapperClass="intro" distanceFactor={10} position={[-1, 2, -4]}>
+                <h1>Hey, this is my playground</h1>
+                <p>This is where I do webGL experiments.</p>
+                <p>The playground is built using <a href='https://threejs.org/'>Three.js</a> via <a href='https://github.com/pmndrs/react-three-fiber'>R3F</a>.</p>
+            </Html>
+        }
 
         <PivotControls visible={attach} anchor={[0, -1, 0]}  {...controlsConfig}>
             <LavaLamp position={[0, -1, 0]} />
